@@ -6,10 +6,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CustomView.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // Setup code that might create autoreleased objects goes here.
+        NSApplication *app = [NSApplication sharedApplication];
+        NSRect frame = NSMakeRect(0, 0, 800, 600);
+        NSWindow *window = [[NSWindow alloc] initWithContentRect:frame
+                                                       styleMask:(NSWindowStyleMaskTitled |NSWindowStyleMaskClosable | NSWindowStyleMaskResizable)
+                                                         backing:NSBackingStoreBuffered
+                                                           defer:NO];
+        [window setTitle:@"Pressure Test"];
+        CustomView *view = [[CustomView alloc] initWithFrame:frame];
+        [window setContentView:view];
+        [window makeKeyAndOrderFront:nil];
+        [app run];
     }
-    return NSApplicationMain(argc, argv);
+    return 0;
 }
