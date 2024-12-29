@@ -6,29 +6,20 @@
     [self handleMouseEvent:event];
 }
 
+// This is the main event
 - (void)mouseDragged:(NSEvent *)event {
     [self handleMouseEvent:event];
 }
 
-- (void)handleMouseEvent:(NSEvent *)event {
-    if (event.type == NSEventTypePressure) {
-        NSLog(@"Pressure: %f", event.pressure);
-    } else if (event.type == NSEventTypeRotate) {
-        NSLog(@"Rotation: %f", event.rotation);
-    } else {
-        NSLog(@"Unknown event type: %@", [self stringForEventType:event.type]);
-        
-        NSLog(@"Pressure: %f", event.pressure);
-        NSLog(@"Rotation: %f", event.rotation);
-        NSLog(@"Tilt X: %f, Tilt Y: %f", event.tilt.x, event.tilt.y);
-    }
+- (void)changeModeWithEvent:(NSEvent *)event {
+    NSLog(@"Mode changed with event: %@", event);
+    // Cannot trigger this method
 }
 
-// Override changeModeWithEvent: method
-- (void)changeModeWithEvent:(NSEvent *)event {
-    // NSLog(@"Mode changed with event: %@", [self stringForEventType:event.type]);
-    NSLog(@"Mode changed with event: %@", event);
-
+- (void)handleMouseEvent:(NSEvent *)event {
+    NSLog(@"Event type: %@", [self stringForEventType:event.type]);
+    NSLog(@"Pressure: %f , Rotation: %f ", event.pressure, event.rotation);
+    NSLog(@"Tilt X: %f, Tilt Y: %f", event.tilt.x, event.tilt.y);
 }
 
 // Helper method to convert NSEventType to string
